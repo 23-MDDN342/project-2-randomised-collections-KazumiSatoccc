@@ -83,7 +83,7 @@ function draw () {
   scale(face_scale);
 
   push();
-  if (mode == '1') {
+  if (mode == '3') {
    // draw face using values mapped from 3 sliders
    let tilt_value = map(s1, 0, 100, -90, 90);
    let mouth_value = map(s2, 0, 100, 0.5, 10);
@@ -94,9 +94,10 @@ function draw () {
   if (mode == '2') {
      // let slider value 1 indicate thinness
      blockyFace(s1);
+     
   }
-  if (mode == '3') {
-    simplePurpleFace();
+  if (mode == '1') {
+    testing(s1,s2,s3,s4);
   }
 
   pop();

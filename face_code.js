@@ -52,15 +52,38 @@ function orangeAlienFace(tilt_value, eye_value, mouth_value) {
 }
 
 
-function simplePurpleFace() {
-  fill(234, 122, 244);
+function testing(top_position, eye_angle, mouse_wide, mouse_height) {
   noStroke();
-  // head
-  ellipse(0, 0, 20);
-  // eyes
-  fill(255, 217, 114);
-  ellipse(-3, -3, 3);
-  ellipse( 3, -3, 3);
+  fill(0, 138, 7);
+  let triangleTop = map(top_position,0,100,-7,7);
+  triangle(10,10,-10,10,triangleTop,5); //background
+
+  fill(225);
+  rect(-10,-8,20,14); //board
+
+  let eyeHeight = -5;
+
+
+  let eyeY = map(eye_angle,0,100,eyeHeight-1,eyeHeight+1);
+  strokeWeight(0.5);
+  stroke(0);
+  strokeJoin(ROUND);
+  beginShape();
+  vertex(-5,eyeHeight);
+  vertex(-3,eyeY);
+  vertex(-1,eyeHeight);
+  endShape();
+
+  beginShape();
+  vertex(5,eyeHeight);
+  vertex(3,eyeY);
+  vertex(1,eyeHeight);
+  endShape(); //eyes
+
+  let mouthWidth = map(mouse_wide,0,100,1,8);
+  let mouthHeight = map(mouse_height,0,100,1,5);
+
+  ellipse(0,3,mouthWidth,mouthHeight); //mouth
 }
 
 /*
@@ -78,4 +101,12 @@ function blockyFace(thinness_value) {
   fill(234, 122, 244);
   ellipse(-2, -4, 1);
   ellipse( 2, -4, 1);
+}
+
+function background(top_position){
+  // noStroke();
+  // fill(0, 138, 7);
+  // let triangleTop = map(top_position,0,100,0,20);
+  // triangle(10,10,-10,-10,triangleTop,0);
+  
 }
