@@ -52,38 +52,75 @@ function orangeAlienFace(tilt_value, eye_value, mouth_value) {
 }
 
 
-function testing(top_position, eye_angle, mouse_wide, mouse_height) {
+function testing(cloth_colorR, cloth_colorG, cloth_colorB, eye_angle, mouse_wide, mouse_height) {
+  
+  strokeWeight(0.2);
+  fill(200);
+  rect(-9.9,-9.9,19.8,19.8); //backframe
+
   noStroke();
-  fill(0, 138, 7);
-  let triangleTop = map(top_position,0,100,-7,7);
-  triangle(10,10,-10,10,triangleTop,5); //background
 
-  fill(225);
-  rect(-10,-8,20,14); //board
+  let shirtColorR = map(cloth_colorR,0,100,1,255);
+  let shirtColorG = map(cloth_colorG,0,100,1,255);
+  let shirtColorB = map(cloth_colorB,0,100,1,255);
 
-  let eyeHeight = -5;
+  fill(shirtColorR, shirtColorG, shirtColorB);
+  triangle(10,10,-10,10,0,5); //background
 
+  fill(255, 228, 161);
+  ellipse(0,0,13,17); //face
+
+  fill(255);
+  strokeWeight(0.1);
+  stroke(150);
+  rect(-8,-4,16,11,1); //board
+
+  noStroke();
+  fill(shirtColorR, shirtColorG, shirtColorB);
+  beginShape();
+  vertex(-8,6);
+  vertex(-10,8);
+  vertex(-10,10);
+  vertex(-7,10);
+  vertex(-6,7);
+  endShape();
+
+  beginShape();
+  vertex(8,6);
+  vertex(10,8);
+  vertex(10,10);
+  vertex(7,10);
+  vertex(6,7);
+  endShape();
+
+  fill(255, 228, 161);
+  ellipse(-7,6,4);
+  ellipse(7,6,4); //hands
+
+  let eyeHeight = -2;
 
   let eyeY = map(eye_angle,0,100,eyeHeight-1,eyeHeight+1);
+  noFill();
   strokeWeight(0.5);
   stroke(0);
   strokeJoin(ROUND);
   beginShape();
-  vertex(-5,eyeHeight);
+  vertex(-4,eyeHeight);
   vertex(-3,eyeY);
-  vertex(-1,eyeHeight);
+  vertex(-2,eyeHeight);
   endShape();
 
   beginShape();
-  vertex(5,eyeHeight);
+  vertex(4,eyeHeight);
   vertex(3,eyeY);
-  vertex(1,eyeHeight);
+  vertex(2,eyeHeight);
   endShape(); //eyes
 
-  let mouthWidth = map(mouse_wide,0,100,1,8);
-  let mouthHeight = map(mouse_height,0,100,1,5);
+  let mouthWidth = map(mouse_wide,0,100,1,6);
+  let mouthHeight = map(mouse_height,0,100,0,4);
 
-  ellipse(0,3,mouthWidth,mouthHeight); //mouth
+  fill(255, 112, 87);
+  ellipse(0,4,mouthWidth,mouthHeight); //mouth
 }
 
 /*

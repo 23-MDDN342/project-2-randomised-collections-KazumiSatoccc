@@ -97,7 +97,7 @@ function draw () {
      
   }
   if (mode == '1') {
-    testing(s1,s2,s3,s4);
+    testing(s1,s2,s3,s4,s5,s6);
   }
 
   pop();
