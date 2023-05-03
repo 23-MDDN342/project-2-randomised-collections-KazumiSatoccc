@@ -44,8 +44,6 @@ function draw () {
   background(bg_color1);
   noStroke();
 
-  let screenType = random(0,100);
-
   // draw a 7x4 grid of faces
   let w = canvasWidth / 5;
   let h = canvasHeight / 3;
@@ -71,13 +69,16 @@ function draw () {
         let s4 = random(0,100);
         let s5 = random(0,100);
         let s6 = random(0,100);
+        let s7 = random(0,100);
+
+        let screenType = random(0,100);
 
         push();
-        if(screenType < 50) {
+        if(screenType < 80) {
           translate(x, y);
           scale(w/25, h/25);
-          faceScreen(s1,s2,s3,s4,s5,s6);
-        } else if(screenType > 50) {
+          faceScreen(s1,s2,s3,s4,s5,s6,s7);
+        } else {
           translate(x, y);
           scale(w/25, h/25);
           loadingScreen();

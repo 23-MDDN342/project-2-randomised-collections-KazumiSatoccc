@@ -52,7 +52,8 @@ function orangeAlienFace(tilt_value, eye_value, mouth_value) {
 }
 
 
-function faceScreen(cloth_colorR, cloth_colorG, cloth_colorB, eye_angle, mouse_wide, mouse_height) {
+function faceScreen(cloth_colorR, cloth_colorG, cloth_colorB, eye_angle, mouse_wide, mouse_height,mouse_angle) {
+  angleMode(DEGREES);
   noStroke();
   fill(200);
   rect(-10,-10,20,20); //background
@@ -72,9 +73,10 @@ function faceScreen(cloth_colorR, cloth_colorG, cloth_colorB, eye_angle, mouse_w
   fill(255);
   strokeWeight(0.1);
   stroke(150);
-  rect(-8,-4,16,11,1); //board
+  rect(-8,-4,16,11,0.5); //board
 
-  noStroke();
+  stroke(150);
+  strokeWeight(0.1);
   fill(shirtColorR, shirtColorG, shirtColorB);
   beginShape();
   vertex(-8,6);
@@ -98,7 +100,7 @@ function faceScreen(cloth_colorR, cloth_colorG, cloth_colorB, eye_angle, mouse_w
 
   let eyeHeight = -2;
 
-  let eyeY = map(eye_angle,0,100,eyeHeight-1,eyeHeight+1);
+  let eyeY = map(eye_angle,0,100,eyeHeight-0.5,eyeHeight+0.5);
   noFill();
   strokeWeight(0.2);
   stroke(0);
@@ -107,7 +109,6 @@ function faceScreen(cloth_colorR, cloth_colorG, cloth_colorB, eye_angle, mouse_w
   curveVertex(-4,eyeHeight);
   curveVertex(-4,eyeHeight);
   curveVertex(-3.5,eyeY);
-  curveVertex(-3,eyeY);
   curveVertex(-2.5,eyeY);
   curveVertex(-2,eyeHeight);
   curveVertex(-2,eyeHeight);
@@ -116,53 +117,72 @@ function faceScreen(cloth_colorR, cloth_colorG, cloth_colorB, eye_angle, mouse_w
   beginShape();
   curveVertex(4,eyeHeight);
   curveVertex(4,eyeHeight);
-  curveVertex(3,eyeY);
+  curveVertex(3.5,eyeY);
+  curveVertex(2.5,eyeY);
   curveVertex(2,eyeHeight);
   curveVertex(2,eyeHeight);
   endShape(); //eyes
 
-  let mouthWidth = map(mouse_wide,0,100,1,6);
-  let mouthHeight = map(mouse_height,0,100,0,4);
+  let mouthWidth = map(mouse_wide,0,100,0.5,1.2);
+  let mouthHeight = map(mouse_height,0,100,0,1.5);
+  let mouthRotate = map(mouse_angle,0,100,0,360);
 
+  push();
   fill(255, 112, 87);
-  ellipse(0,4,mouthWidth,mouthHeight); //mouth
+  strokeWeight(0.1);
+
+  translate(0,4);
+  scale(mouthWidth,mouthHeight);
+  rotate(mouthRotate);
+
+  beginShape();
+  curveVertex(0,1);
+  curveVertex(0,1);
+  curveVertex(1.5,0.9);
+  curveVertex(2,0);
+  curveVertex(1.2,-1);
+  curveVertex(0,-1);
+  curveVertex(-1.5,-0.8);
+  curveVertex(-2,0.2);
+  curveVertex(-1.7,0.7);
+  curveVertex(0.1,1.1);
+  curveVertex(0.1,1.1);
+  endShape();
+  pop();
 
   strokeWeight(0.2);
   noFill();
   rect(-9.9,-9.9,19.9,19.9); //backframe
 }
 
-/*
- * thinness_value ranges from 0-100 and indicates how thin the face is
- */
 var x = 0;
 
-function loadingScreen() {
+function loadingScreen() { //function for loading screen
   angleMode(DEGREES);
 
   noStroke();
   fill(30);
-  rect(-10,-10,20,20)
+  rect(-10,-10,20,20) //background
 
   push();
   rotate(x);
   
   let dotNum = 12
   
-  for (let i = 0; i < dotNum; i++) {
+  for (let i = 0; i < dotNum; i++) { //rotating bots
     noStroke();
     fill(250-i*20)
     ellipse(2,0,0.5,0.5);
     rotate(360/dotNum);
   }
   
-  x = x+5
+  x = x+1
   pop();
   
   fill(200)
   textAlign(CENTER);
   textSize(1);
-  text('CONNECTING...',0,5)
+  text('CONNECTING...',0,5) //text
 }
 
 function background(top_position){
