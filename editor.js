@@ -93,11 +93,11 @@ function draw () {
 
   if (mode == '2') {
      // let slider value 1 indicate thinness
-     blockyFace(s1);
+     loadingScreen();
      
   }
   if (mode == '1') {
-    testing(s1,s2,s3,s4,s5,s6);
+    faceScreen(s1,s2,s3,s4,s5,s6);
   }
 
   pop();

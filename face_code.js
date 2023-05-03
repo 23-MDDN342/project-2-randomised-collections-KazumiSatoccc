@@ -52,11 +52,10 @@ function orangeAlienFace(tilt_value, eye_value, mouth_value) {
 }
 
 
-function testing(cloth_colorR, cloth_colorG, cloth_colorB, eye_angle, mouse_wide, mouse_height) {
-  
-  strokeWeight(0.2);
+function faceScreen(cloth_colorR, cloth_colorG, cloth_colorB, eye_angle, mouse_wide, mouse_height) {
+  noStroke();
   fill(200);
-  rect(-9.9,-9.9,19.8,19.8); //backframe
+  rect(-10,-10,20,20); //background
 
   noStroke();
 
@@ -65,7 +64,7 @@ function testing(cloth_colorR, cloth_colorG, cloth_colorB, eye_angle, mouse_wide
   let shirtColorB = map(cloth_colorB,0,100,1,255);
 
   fill(shirtColorR, shirtColorG, shirtColorB);
-  triangle(10,10,-10,10,0,5); //background
+  triangle(10,10,-10,10,0,5); //body
 
   fill(255, 228, 161);
   ellipse(0,0,13,17); //face
@@ -101,19 +100,25 @@ function testing(cloth_colorR, cloth_colorG, cloth_colorB, eye_angle, mouse_wide
 
   let eyeY = map(eye_angle,0,100,eyeHeight-1,eyeHeight+1);
   noFill();
-  strokeWeight(0.5);
+  strokeWeight(0.2);
   stroke(0);
   strokeJoin(ROUND);
   beginShape();
-  vertex(-4,eyeHeight);
-  vertex(-3,eyeY);
-  vertex(-2,eyeHeight);
+  curveVertex(-4,eyeHeight);
+  curveVertex(-4,eyeHeight);
+  curveVertex(-3.5,eyeY);
+  curveVertex(-3,eyeY);
+  curveVertex(-2.5,eyeY);
+  curveVertex(-2,eyeHeight);
+  curveVertex(-2,eyeHeight);
   endShape();
 
   beginShape();
-  vertex(4,eyeHeight);
-  vertex(3,eyeY);
-  vertex(2,eyeHeight);
+  curveVertex(4,eyeHeight);
+  curveVertex(4,eyeHeight);
+  curveVertex(3,eyeY);
+  curveVertex(2,eyeHeight);
+  curveVertex(2,eyeHeight);
   endShape(); //eyes
 
   let mouthWidth = map(mouse_wide,0,100,1,6);
@@ -121,23 +126,43 @@ function testing(cloth_colorR, cloth_colorG, cloth_colorB, eye_angle, mouse_wide
 
   fill(255, 112, 87);
   ellipse(0,4,mouthWidth,mouthHeight); //mouth
+
+  strokeWeight(0.2);
+  noFill();
+  rect(-9.9,-9.9,19.9,19.9); //backframe
 }
 
 /*
  * thinness_value ranges from 0-100 and indicates how thin the face is
  */
-function blockyFace(thinness_value) {
-  // head
-  noStroke();
-  fill(134, 19, 136);
-  let head_width = map(thinness_value, 0, 100, 8, 20);
-  rect(-head_width/2, -9, head_width, 18);
- 
+var x = 0;
 
-  // eyes
-  fill(234, 122, 244);
-  ellipse(-2, -4, 1);
-  ellipse( 2, -4, 1);
+function loadingScreen() {
+  angleMode(DEGREES);
+
+  noStroke();
+  fill(30);
+  rect(-10,-10,20,20)
+
+  push();
+  rotate(x);
+  
+  let dotNum = 12
+  
+  for (let i = 0; i < dotNum; i++) {
+    noStroke();
+    fill(250-i*20)
+    ellipse(2,0,0.5,0.5);
+    rotate(360/dotNum);
+  }
+  
+  x = x+5
+  pop();
+  
+  fill(200)
+  textAlign(CENTER);
+  textSize(1);
+  text('CONNECTING...',0,5)
 }
 
 function background(top_position){
