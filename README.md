@@ -3,6 +3,5 @@
 ## 2023 MDDN342 Assignment 2: Randomised Collections
 **This is where you talk about your project!**
 
->This starter code is just some simple faces being drawn. 
-
+The idea for this assignment is people holding their face sketch in front of their face. I got this idea from a charactor who output their feelings by drawing their face. While sketching my initial ideas, I made grid for each sketch and that looked like a zoom screen so I decided to make it like a online meeting screen. This design also shows sarcasm of people can fake their personality behind the screen by just showing made up face.
 
